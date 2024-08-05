@@ -2,7 +2,7 @@
     "builds": [{
         "src": "bulk_email_project/wsgi.py",
         "use": "@vercel/python",
-        "config": { "maxLambdaSize": "100mb", "runtime": "python3.11" }
+        "config": { "maxLambdaSize": "100mb", "runtime": "python3.12" }
     }],
     "routes": [
         {
