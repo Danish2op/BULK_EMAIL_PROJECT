@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Email Sender</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1c1c1c, #383838);
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            background: #282828;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            text-align: center;
+            color: #ffcc00;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input, textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+            background: #444;
+            color: #fff;
+        }
+        input[type="file"] {
+            padding: 5px;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffcc00;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        textarea::placeholder {
+            color: #888;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bulk Email Sender</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="id_email_subject">Email Subject:</label>
+            <input type="text" name="email_subject" id="id_email_subject">
+            
+            <label for="id_email_body">Email Body:</label>
+            <textarea name="email_body" id="id_email_body" rows="10" placeholder="Example:
+Dear VAR1,
+
+Thank you for reaching out to us! We have noted your details as follows:
+
+Phone Number: VAR3
+Comment: VAR4
+
+
+( VAR1,VAR2,VAR3 will be replaced by data in the excel sheet under respective column.
+Please note that VAR2 is strictly reserved for the recipient's email address and should not be used for any other data.)"></textarea>
+            
+            <label for="id_excel_file">Excel File (Please ensure that columns are named VAR1, VAR2, and so on. Maximum VARs = 12. And ensure VAR2 is reserved for the receiver's email):</label>
+            <input type="file" name="excel_file" id="id_excel_file">
+            
+            <label for="id_min_time_interval">Minimum Time Interval (seconds):</label>
+            <input type="number" name="min_time_interval" id="id_min_time_interval" min="0">
+            
+            <label for="id_max_time_interval">Maximum Time Interval (seconds):</label>
+            <input type="number" name="max_time_interval" id="id_max_time_interval" min="0">
+
+            <label for="id_email_id">Your Email ID:</label>
+            <input type="email" name="email_id" id="id_email_id">
+
+            <label for="id_app_password">Your App Password (Without space bar):</label>
+            <input type="password" name="app_password" id="id_app_password">
+            
+            <input type="submit" value="Send Emails">
+        </form>
+    </div>
+</body>
+</html>
